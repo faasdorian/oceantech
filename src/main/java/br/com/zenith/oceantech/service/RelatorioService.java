@@ -33,4 +33,8 @@ public class RelatorioService {
     public List<Relatorio> getRelatoriosByIdPorto(Integer idPorto) {
         return relatorioRepository.findAllByIdPorto(idPorto);
     }
+
+    public void addRelatorio(Relatorio relatorio) {
+        relatorioRepository.save(relatorio);
+    }
 }

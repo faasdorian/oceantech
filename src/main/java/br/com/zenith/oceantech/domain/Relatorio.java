@@ -1,19 +1,25 @@
 package br.com.zenith.oceantech.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "RELATORIOS")
+@SequenceGenerator(name="ID_SEQ2", sequenceName="ID_SEQ2", initialValue=1, allocationSize=1)
 public class Relatorio{
 	
 	@Id
 	@Column(name = "ID")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ID_SEQ2")
 	private Integer id;
 	
 	@Column(name = "DT")
+	@NotBlank
 	private String data;
 
 	@Column(name = "ID_PORTO")
+	@Min(1)
 	private Integer idPorto;
 
 	public Relatorio() {

@@ -1,18 +1,25 @@
 package br.com.zenith.oceantech.domain;
 
+
+import org.hibernate.validator.constraints.Length;
+
+
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "PORTOS")
+@SequenceGenerator(name="ID_SEQ1", sequenceName="ID_SEQ1", initialValue=1, allocationSize=1)
 public class Porto{
 	
 	@Id
 	@Column(name = "ID")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ID_SEQ1")
 	private Integer id;
 	
 	@Column(name = "NOME")
+	@NotBlank
+	@Length(min = 5, max = 70, message = "O nome deve ter no mínimo {min} e no máximo {max} caracteres")
 	private String nome;
 
 	public Porto() {

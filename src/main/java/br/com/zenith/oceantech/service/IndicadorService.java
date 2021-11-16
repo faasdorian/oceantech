@@ -20,4 +20,8 @@ public class IndicadorService {
         return indicadores;
     }
 
+    public void addIndicador(Indicador indicador) {
+        indicadorRepository.save(indicador);
+    }
+
 }

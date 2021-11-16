@@ -6,12 +6,11 @@ import br.com.zenith.oceantech.repository.PortoRepository;
 import br.com.zenith.oceantech.service.IndicadorService;
 import br.com.zenith.oceantech.service.RelatorioService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.List;
 
@@ -25,6 +24,12 @@ public class RelatoriosController {
     public RelatoriosController(RelatorioService relatorioService, IndicadorService indicadorService) {
         this.relatorioService = relatorioService;
         this.indicadorService = indicadorService;
+    }
+
+    @PostMapping(value = "/registrar", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity addRelatorio(@Valid @RequestBody Relatorio relatorio) {
+        relatorioService.addRelatorio(relatorio);
+        return ResponseEntity.ok("Relatório válido.");
     }
 
     @GetMapping("/lista/{idPorto}")
